@@ -15,7 +15,7 @@ class dell::openmanage::redhat {
     ensure => latest,
   }
 
-  package { ['srvadmin-base', 'srvadmin-storageservices']:
+  package { 'srvadmin-all':
     ensure  => present,
     require => Yumrepo['dell-omsa-specific'],
     before  => Service['dataeng'],
@@ -50,6 +50,8 @@ class dell::openmanage::redhat {
   file { [
     '/etc/yum.repos.d/dell-hardware-auto.repo',
     '/etc/yum.repos.d/dell-hardware-main.repo',
+    '/etc/yum.repos.d/dell-community-repository.repo',
+    '/etc/yum.repos.d/dell-omsa-repository.repo',
   ]:
     ensure => absent,
   }

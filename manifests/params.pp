@@ -2,13 +2,18 @@
 # == Class: dell::params
 #
 # Parameters
-# TODO: use parameterized classes
 # TODO: remove lenny and refactor this
 #
-class dell::params {
+class dell::params (
+  $dell_omsa_url_base           = '',
+  $dell_omsa_url_args_indep     = '',
+  $dell_omsa_url_args_specific  = '',
+  $dell_omsa_version            = '',
+  $dell_customplugins           = '',
+  $dell_check_warranty_revision = '',
+) {
 
   case $::osfamily {
-
     'RedHat': {
       $omsa_url_base = $dell_omsa_url_base ? {
         ''      => 'http://linux.dell.com/repo/hardware/',
@@ -28,7 +33,6 @@ class dell::params {
 
     'Debian': {
       case $::lsbmajdistrelease {
-
         '7': {
           $omsa_url_base = $dell_omsa_url_base ? {
             ''      => 'http://linux.dell.com/repo/community/debian/',
@@ -37,11 +41,11 @@ class dell::params {
         }
 
         default: {
-            $omsa_url_base = $dell_omsa_url_base ? {
-              ''      => 'http://linux.dell.com/repo/community/deb/',
-              default => $dell_omsa_url_base,
-            }
-          }  
+          $omsa_url_base = $dell_omsa_url_base ? {
+            ''      => 'http://linux.dell.com/repo/community/deb/',
+            default => $dell_omsa_url_base,
+          }
+        }
       }
 
       $smbios_pkg = $::lsbdistcodename ? {
@@ -54,19 +58,19 @@ class dell::params {
   }
 
   $omsa_version = $dell_omsa_version ? {
-          '' => $::productname ? {
-            'PowerEdge 1750' => 'OMSA_6.1',
-            'PowerEdge 1850' => 'OMSA_5.5',
-            'PowerEdge 1950' => 'OMSA_6.1',
-            'PowerEdge 2950' => 'OMSA_6.4',
-            'PowerEdge R210 II' => 'OMSA_6.4',
-            'PowerEdge R310' => 'OMSA_6.4',
-            'PowerEdge R410' => 'OMSA_6.4',
-            'PowerEdge R510' => 'OMSA_6.4',
-            'PowerEdge R610' => 'OMSA_6.4',
-            'PowerEdge T320' => '',
-            'PowerEdge R620' => 'OMSA_7.2',
-            default          => 'OMSA_5.4',
+    '' => $::productname ? {
+      'PowerEdge 1750'    => 'OMSA_6.1',
+      'PowerEdge 1850'    => 'OMSA_5.5',
+      'PowerEdge 1950'    => 'OMSA_6.1',
+      'PowerEdge 2950'    => 'OMSA_6.4',
+      'PowerEdge R210 II' => 'OMSA_6.4',
+      'PowerEdge R310'    => 'OMSA_6.4',
+      'PowerEdge R410'    => 'OMSA_6.4',
+      'PowerEdge R510'    => 'OMSA_6.4',
+      'PowerEdge R610'    => 'OMSA_6.4',
+      'PowerEdge T320'    => '',
+      'PowerEdge R620'    => 'OMSA_7.2',
+      default             => 'OMSA_5.4',
     },
     'latest' => 'latest',
     default  => "OMSA_${dell_omsa_version}",
@@ -81,5 +85,4 @@ class dell::params {
     ''      => '42d157c57b1247e651021098b278adf14e468805',
     default => $dell_check_warranty_revision,
   }
-
 }
