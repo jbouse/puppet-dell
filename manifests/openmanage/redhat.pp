@@ -67,6 +67,8 @@ class dell::openmanage::redhat {
         ensure  => present,
         source  => "puppet:///modules/dell/etc/init.d/dsm_sa_ipmi.${::osfamily}.${::lsbdistrelease}",
         mode    => '0755',
+        owner   => 'root',
+        group   => 'root',
         seluser => 'system_u',
         selrole => 'object_r',
         seltype => 'initrc_exec_t',
