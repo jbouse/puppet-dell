@@ -29,12 +29,16 @@ class dell::hwtools {
         ensure => present,
         source => 'puppet:///modules/dell/etc/pki/rpm-gpg/RPM-GPG-KEY-dell',
         mode   => '0644',
+        owner  => 'root',
+        group  => 'root',
       }
 
       file {'/etc/pki/rpm-gpg/RPM-GPG-KEY-libsmbios':
         ensure => present,
         source => 'puppet:///modules/dell/etc/pki/rpm-gpg/RPM-GPG-KEY-libsmbios',
         mode   => '0644',
+        owner  => 'root',
+        group  => 'root',
       }
 
       # http://linux.dell.com/wiki/index.php/Repository/software
