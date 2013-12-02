@@ -70,7 +70,7 @@ class dell::params (
       'PowerEdge R610'    => 'OMSA_6.4',
       'PowerEdge T320'    => '',
       'PowerEdge R620'    => 'OMSA_7.2',
-      default             => 'OMSA_5.4',
+      default             => 'latest',
     },
     'latest' => 'latest',
     default  => "OMSA_${dell_omsa_version}",
