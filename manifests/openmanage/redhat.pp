@@ -80,4 +80,14 @@ class dell::openmanage::redhat {
 
   }
 
+  case $::lsbmajdistrelease {
+    '6': {
+      package { ['OpenIPMI','OpenIPMI-libs', 'openssl098e']:
+        ensure => installed,
+      }
+    }
+
+    default: {}
+  }
+
 }
