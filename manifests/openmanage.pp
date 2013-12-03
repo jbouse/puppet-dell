@@ -46,13 +46,6 @@ class dell::openmanage {
     ensure  => absent,
   }
 
-  tidy {'/var/log':
-    matches => 'TTY_*.log.*',
-    age     => '60d',
-    backup  => false,
-    recurse => true,
-  }
-
   case $::osfamily {
     Redhat: {
 
