@@ -15,7 +15,7 @@ class dell::openmanage::redhat {
     ensure => latest,
   }
 
-  package { 'srvadmin-all':
+  package { ['srvadmin-all', 'srvadmin-idrac7', 'srvadmin-idracadm7']:
     ensure  => present,
     require => Yumrepo['dell-omsa-specific'],
     before  => Service['dataeng'],
