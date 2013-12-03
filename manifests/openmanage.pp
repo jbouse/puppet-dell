@@ -12,6 +12,21 @@ class dell::openmanage {
     hasstatus => true,
   }
 
+  service { 'dsm_om_connsvc':
+    ensure    => running,
+    hasstatus => true,
+  }
+
+  service { 'dsm_om_shrsvc':
+    ensure    => running,
+    hasstatus => true,
+  }
+
+  service { 'dsm_sa_ipmi':
+    ensure    => running,
+    hasstatus => true,
+  }
+
   file {'/etc/logrotate.d/openmanage':
     ensure  => present,
     owner   => root,
