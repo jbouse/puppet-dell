@@ -59,6 +59,7 @@ class dell::openmanage::redhat {
     '6': {
       package { ['OpenIPMI','OpenIPMI-libs', 'openssl098e']:
         ensure => installed,
+        before => Package['srvadmin-all'],
       }
     }
 
