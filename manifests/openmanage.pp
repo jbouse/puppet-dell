@@ -10,41 +10,43 @@ class dell::openmanage {
   service { 'dataeng':
     ensure    => running,
     hasstatus => true,
+    require   => Package['srvadmin-all'],
   }
 
   service { 'dsm_om_connsvc':
     ensure    => running,
     hasstatus => true,
+    require   => Package['srvadmin-all'],
   }
 
   service { 'dsm_om_shrsvc':
     ensure    => running,
     hasstatus => true,
+    require   => Package['srvadmin-all'],
   }
 
   service { 'dsm_sa_ipmi':
     ensure    => running,
     hasstatus => true,
+    require   => Package['srvadmin-all'],
   }
 
-  file {'/etc/logrotate.d/openmanage':
+  file { '/etc/logrotate.d/openmanage':
     ensure  => present,
     owner   => root,
     group   => root,
     mode    => '0644',
-    content => "# file managed by puppet
+    content => '# file managed by puppet
 /var/log/TTY_*.log {
   missingok
   weekly
   notifempty
   compress
 }
-",
+',
   }
 
-  file {'/etc/logrotate.d/perc5logs':
-    ensure  => absent,
-  }
+  file { '/etc/logrotate.d/perc5logs': ensure  => absent }
 
   case $::osfamily {
     Redhat: {

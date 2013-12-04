@@ -11,7 +11,7 @@ class dell::openmanage::redhat {
 
   # this package contains the yum plugin which find the best yum repository
   # depending on the hardware.
-  package{'firmware-addon-dell':
+  package{ 'firmware-addon-dell':
     ensure => latest,
   }
 
@@ -25,7 +25,7 @@ class dell::openmanage::redhat {
   # va analyser le hardware et échoue si le système n'est pas supporté.
   #
   # http://linux.dell.com/repo/hardware/latest
-  yumrepo {'dell-omsa-specific':
+  yumrepo { 'dell-omsa-specific':
     descr      => 'Dell OMSA repository - Hardware specific',
     mirrorlist => "${dell::omsa_url_base}${dell::omsa_version}/mirrors.cgi?${dell::omsa_url_args_specific}",
     enabled    => 1,
@@ -54,30 +54,6 @@ class dell::openmanage::redhat {
     '/etc/yum.repos.d/dell-omsa-repository.repo',
   ]:
     ensure => absent,
-  }
-
-  # Patch for RHEL6.4, waiting for new OMSA release
-  # See http://lists.us.dell.com/pipermail/linux-poweredge/2013-March/047794.html
-  # This file is a kind a merge between /etc/init.d/ipmi (provided by OpenIPMI)
-  # and /etc/init.d/dsm_sa_ipmi (provided by OMSA 7.2)
-  case $::lsbdistrelease {
-
-    '6.4': {
-      file { '/etc/init.d/dsm_sa_ipmi':
-        ensure  => present,
-        source  => "puppet:///modules/dell/etc/init.d/dsm_sa_ipmi.${::osfamily}.${::lsbdistrelease}",
-        mode    => '0755',
-        owner   => 'root',
-        group   => 'root',
-        seluser => 'system_u',
-        selrole => 'object_r',
-        seltype => 'initrc_exec_t',
-        before  => [ Service['dataeng'] ],
-      }
-    }
-
-    default: {}
-
   }
 
   case $::lsbmajdistrelease {

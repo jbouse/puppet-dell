@@ -21,11 +21,11 @@ class dell::hwtools {
       }
     }
     RedHat: {
-      package{['libsmbios', 'smbios-utils', 'firmware-tools']:
+      package{ ['libsmbios', 'smbios-utils', 'firmware-tools']:
         ensure => latest,
       }
 
-      file {'/etc/pki/rpm-gpg/RPM-GPG-KEY-dell':
+      file { '/etc/pki/rpm-gpg/RPM-GPG-KEY-dell':
         ensure => present,
         source => 'puppet:///modules/dell/etc/pki/rpm-gpg/RPM-GPG-KEY-dell',
         mode   => '0644',
@@ -33,7 +33,7 @@ class dell::hwtools {
         group  => 'root',
       }
 
-      file {'/etc/pki/rpm-gpg/RPM-GPG-KEY-libsmbios':
+      file { '/etc/pki/rpm-gpg/RPM-GPG-KEY-libsmbios':
         ensure => present,
         source => 'puppet:///modules/dell/etc/pki/rpm-gpg/RPM-GPG-KEY-libsmbios',
         mode   => '0644',
@@ -42,7 +42,7 @@ class dell::hwtools {
       }
 
       # http://linux.dell.com/wiki/index.php/Repository/software
-      yumrepo {'dell-omsa-indep':
+      yumrepo { 'dell-omsa-indep':
         descr      => 'Dell OMSA repository - Hardware independent',
         mirrorlist => "${dell::omsa_url_base}${dell::omsa_version}/mirrors.cgi?${dell::omsa_url_args_indep}",
         enabled    => 1,
