@@ -23,7 +23,7 @@ end
     confine :is_dell_machine => true
 
     setcode do
-      if Facter.value(:racadm_version).match(fact_regex)
+      if Facter.value(:racadm_version) && Facter.value(:racadm_version).match(fact_regex)
         $1
       end
     end
