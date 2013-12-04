@@ -1,4 +1,3 @@
-#
 # == Class: dell::collectd
 #
 # Configures collectd's SNMP plugin for gathering OMSA's data. Actually

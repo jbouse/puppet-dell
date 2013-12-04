@@ -1,4 +1,3 @@
-#
 # == Class: dell::openmanage::debian
 #
 # Install openmanage tools on Debian

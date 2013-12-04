@@ -1,4 +1,3 @@
-#
 # == Class: dell::warranty
 #
 # Install a script to check warranty of a product.

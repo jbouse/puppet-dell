@@ -1,4 +1,3 @@
-#
 # == Class: dell::snmp
 #
 # Add a line to snmpd.conf which will publish Dell OMSA's infos through SNMP.

@@ -1,4 +1,3 @@
-#
 # == Class: dell::openmanage::redhat
 #
 # Install openmanage tools on RedHat

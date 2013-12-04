@@ -1,3 +1,5 @@
+# == Class: dell
+#
 class dell (
   $omsa_url_base           = $dell::params::omsa_url_base,
   $omsa_url_args_indep     = $dell::params::omsa_url_args_indep,

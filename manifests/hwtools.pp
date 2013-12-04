@@ -1,4 +1,3 @@
-#
 # == Class: dell::hwtools
 #
 # Install hardware tools

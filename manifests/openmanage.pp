@@ -1,4 +1,3 @@
-#
 # == Class: dell::openmanage
 #
 # Install openmanage tools

@@ -1,4 +1,3 @@
-#
 # == Class: dell::params
 #
 # Parameters
